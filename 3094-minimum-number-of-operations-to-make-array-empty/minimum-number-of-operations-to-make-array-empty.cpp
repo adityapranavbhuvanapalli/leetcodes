@@ -12,9 +12,7 @@ public:
             if (v == 1)
                 return -1;
 
-            ops += (v / 3);
-            if (v % 3 != 0)
-                ops++;
+            ops += ((v+2) / 3);
         }
 
         return ops;
