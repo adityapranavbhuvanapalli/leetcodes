@@ -1,6 +1,6 @@
 class Solution {
 public:
-    map<int, int> dp;
+    unordered_map<int, int> dp;
     int jobScheduling(vector<int>& startTime, vector<int>& endTime, vector<int>& profit) {
         int n = startTime.size();
         vector<tuple<int, int, int>> times(n);
