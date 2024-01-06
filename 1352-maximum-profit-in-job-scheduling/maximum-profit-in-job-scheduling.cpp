@@ -1,10 +1,10 @@
 class Solution {
 public:
-    vector<int> dp;
+    map<int, int> dp;
     int jobScheduling(vector<int>& startTime, vector<int>& endTime, vector<int>& profit) {
         int n = startTime.size();
         vector<tuple<int, int, int>> times(n);
-        dp = vector<int>(n, -1);
+        // dp = vector<int>(n, -1);
 
         for(int i=0; i<n; i++) {
             times[i] = {startTime[i], endTime[i], profit[i]};
@@ -19,7 +19,7 @@ public:
         if(i >= n)
             return 0;
 
-        if(dp[i] != -1)
+        if(dp.count(i) == 1)
             return dp[i];
 
         auto& [starti, endi, profiti] = times[i];
