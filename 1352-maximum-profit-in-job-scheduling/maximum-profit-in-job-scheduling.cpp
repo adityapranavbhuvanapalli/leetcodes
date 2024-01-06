@@ -19,7 +19,7 @@ public:
         if(i >= n)
             return 0;
 
-        if(dp.count(i) == 1)
+        if(dp[i])
             return dp[i];
 
         auto& [starti, endi, profiti] = times[i];
