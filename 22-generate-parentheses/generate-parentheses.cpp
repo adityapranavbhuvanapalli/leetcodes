@@ -17,7 +17,6 @@ public:
             comb += '(';
             solve(open + 1, close, n, comb);
             comb.pop_back();
-
         }
 
         if(close < open) {
