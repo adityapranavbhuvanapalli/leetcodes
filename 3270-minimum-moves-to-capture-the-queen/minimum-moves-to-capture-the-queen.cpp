@@ -9,9 +9,9 @@ public:
             if(abs(d - f) != abs(c - e)) {
                 bishop = 2;
             } else if((d - f) * (c - a) == (d - b) * (c - e)) {
-                double distBQ = (double)sqrt((c - e) * (c - e) + (d - f) * (d - f));
-                double distRQ = (double)sqrt((a - e) * (a - e) + (b - f) * (b - f));
-                double distRB = (double)sqrt((a - c) * (a - c) + (b - d) * (b - d));
+                double distBQ = sqrt((c - e) * (c - e) + (d - f) * (d - f));
+                double distRQ = sqrt((a - e) * (a - e) + (b - f) * (b - f));
+                double distRB = sqrt((a - c) * (a - c) + (b - d) * (b - d));
                 
                 bishop = (distBQ > distRB && distBQ > distRQ) ? 2 : 1; 
             } else {
