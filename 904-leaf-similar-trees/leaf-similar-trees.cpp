@@ -38,7 +38,6 @@ public:
             if(i >= n || leaves[i] != root->val)
                 return false;
 
-            cout<<root->val<<" ";
             i++;
         }
 
