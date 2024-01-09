@@ -11,36 +11,22 @@
  */
 class Solution {
 public:
-    int i = 0, n;
-    vector<int> leaves;
     bool leafSimilar(TreeNode* root1, TreeNode* root2) {
-        dfs(root1);
-        n = leaves.size();
-        return dfs2(root2) && i == n;
+        vector<int> tree1, tree2;
+        dfs(root1, tree1);
+        dfs(root2, tree2);
+
+        return tree1 == tree2;
     }
 
-    void dfs(TreeNode* root) {
+    void dfs(TreeNode* root, vector<int>& tree) {
         if(!root)
             return;
 
         if(!root->left && !root->right)
-            leaves.push_back(root->val);
+            tree.push_back(root->val);
 
-        dfs(root->left);
-        dfs(root->right);
-    }
-
-    bool dfs2(TreeNode* root) {
-        if(!root)
-            return true;
-
-        if(!root->left && !root->right) {
-            if(i >= n || leaves[i] != root->val)
-                return false;
-
-            i++;
-        }
-
-        return dfs2(root->left) && dfs2(root->right);
+        dfs(root->left, tree);
+        dfs(root->right, tree);
     }
 };
