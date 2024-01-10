@@ -26,9 +26,9 @@ public:
         int sum = l->val + r->val;
 
         if (sum > k) {
-            return solve(l->left, r, k) || solve(l, r->left, k) || solve(l->left, r->left, k);
+            return solve(l->left, r, k) || solve(l, r->left, k);
         } else if (sum < k) {
-            return solve(l->right, r, k) || solve(l, r->right, k) || solve(l->right, r->right, k);
+            return solve(l->right, r, k) || solve(l, r->right, k);
         }
 
         return true;
