@@ -12,9 +12,7 @@ class Solution {
 public:
     int numComponents(ListNode* head, vector<int>& nums) {
         int count = 0, len = 0;
-        unordered_set<int> uniq;
-        for (const auto& num : nums)
-            uniq.insert(num);
+        unordered_set<int> uniq(nums.begin(), nums.end());
 
         while (head) {
             if (uniq.count(head->val) == 0) {
