@@ -12,7 +12,6 @@
  */
 class Solution {
 public:
-    map<pair<TreeNode*, TreeNode*>, bool> dp;
     bool findTarget(TreeNode* root, int k) { 
         return solve(root, root, k); 
     }
@@ -21,21 +20,17 @@ public:
         if (!l || !r)
             return false;
 
-        // cout<<l->val<<" "<<r->val<<endl;
-        if(dp.count({l, r}) == 1)
-            return dp[{l, r}];
-
         if(l == r) 
-            return dp[{l, r}] = solve(l->left, r, k) || solve(l, r->right, k);
+            return solve(l->left, r, k) || solve(l, r->right, k);
 
         int sum = l->val + r->val;
 
         if (sum > k) {
-            return dp[{l, r}] = solve(l->left, r, k) || solve(l, r->left, k);
+            return solve(l->left, r, k) || solve(l, r->left, k);
         } else if (sum < k) {
-            return dp[{l, r}] = solve(l->right, r, k) || solve(l, r->right, k);
+            return solve(l->right, r, k) || solve(l, r->right, k);
         }
 
-        return dp[{l, r}] = true;
+        return true;
     }
 };
