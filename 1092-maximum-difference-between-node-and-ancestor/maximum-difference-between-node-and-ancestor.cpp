@@ -25,11 +25,6 @@ public:
             return;
         }
 
-        if(!root->left && !root->right) {
-            minVal = maxVal = root->val;
-            return;
-        }
-
         int minL, minR, maxL, maxR;
         dfs(root->left, minL, maxL);
         dfs(root->right, minR, maxR);
