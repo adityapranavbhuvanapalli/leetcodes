@@ -11,23 +11,31 @@
  */
 class Solution {
 public:
-    int res = -1;
+    int res = 0;
     int maxAncestorDiff(TreeNode* root) {
-        vector<int> ancestors;
-        dfs(root, ancestors);
+        int minVal, maxVal;
+        dfs(root, minVal, maxVal);
         return res;
     }
 
-    void dfs(TreeNode* root, vector<int>& ancestors) {
-        if(!root)
+    void dfs(TreeNode* root, int& minVal, int& maxVal) {
+        if(!root) {
+            minVal = INT_MAX;
+            maxVal = INT_MIN;
             return;
+        }
 
-        for(const auto& ancestor: ancestors)
-            res = max(res, abs(ancestor - root->val));
+        if(!root->left && !root->right) {
+            minVal = maxVal = root->val;
+            return;
+        }
 
-        ancestors.push_back(root->val);
-        dfs(root->left, ancestors);
-        dfs(root->right, ancestors);
-        ancestors.pop_back();
+        int minL, minR, maxL, maxR;
+        dfs(root->left, minL, maxL);
+        dfs(root->right, minR, maxR);
+        minVal = min({minL, minR, root->val});
+        maxVal = max({maxL, maxR, root->val});
+
+        res = max({res, abs(root->val - minVal), abs(root->val - maxVal)});
     }
 };
