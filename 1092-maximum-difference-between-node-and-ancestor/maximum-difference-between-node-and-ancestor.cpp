@@ -38,6 +38,5 @@ public:
         minVal = min({minL, minR, root->val});
         maxVal = max({maxL, maxR, root->val});
         res = max({res, abs(root->val - minVal), abs(root->val - maxVal)});
-        // cout<<root->val<<" "<<minVal<<", "<<maxVal<<endl;
     }
 };
