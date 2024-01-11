@@ -18,7 +18,7 @@ public:
         return res;
     }
 
-    void dfs(TreeNode* root, vector<int> ancestors) {
+    void dfs(TreeNode* root, vector<int>& ancestors) {
         if(!root)
             return;
 
@@ -28,6 +28,6 @@ public:
         ancestors.push_back(root->val);
         dfs(root->left, ancestors);
         dfs(root->right, ancestors);
-        // ancestors.pop_back();
+        ancestors.pop_back();
     }
 };
