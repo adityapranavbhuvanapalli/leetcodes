@@ -1,17 +1,19 @@
 class Solution {
 public:
     bool halvesAreAlike(string s) {
-        int count = 0, n = s.size();
         char ch;
+        int count = 0, l = 0, r = s.size() - 1;
         
-        for(int i=0; i<n; i++) {
-            ch = tolower(s[i]);
-            if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
-                if(i < n/2)
-                    count++;
-                else
-                    count--;
-            }
+        while(l < r) {
+            ch = tolower(s[l]);
+            if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+                count++;
+
+            ch = tolower(s[r]);
+            if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+                count--;
+
+            l++, r--;
         }
 
         return count == 0;
