@@ -11,8 +11,9 @@ public:
             freq[ch]--;
 
         for (const auto& [k, v] : freq)
-            res += abs(v);
+            if(v > 0)
+                res += v;
 
-        return res / 2;
+        return res;
     }
 };
