@@ -1,6 +1,10 @@
 class Solution {
 public:
     int minSteps(string s, string t) {
+        ios::sync_with_stdio(false);
+        cin.tie(nullptr);
+        cout.tie(nullptr);
+
         int count = 0;
         int M[26] = {0};
 
