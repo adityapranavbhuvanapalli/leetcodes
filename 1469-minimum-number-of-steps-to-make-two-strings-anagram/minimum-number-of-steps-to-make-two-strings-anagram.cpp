@@ -11,7 +11,7 @@ public:
             freq[ch]--;
 
         for (const auto& [k, v] : freq)
-            if(v > 0)
+            if (v > 0)
                 res += v;
 
         return res;
