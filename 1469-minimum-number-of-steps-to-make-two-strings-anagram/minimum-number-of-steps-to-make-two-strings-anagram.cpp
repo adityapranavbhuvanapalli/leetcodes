@@ -13,6 +13,6 @@ public:
         for (const auto& [k, v] : freq)
             res += abs(v);
 
-        return res/2;
+        return res / 2;
     }
 };
