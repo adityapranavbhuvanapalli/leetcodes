@@ -15,10 +15,8 @@ public:
             }
         }
 
-        for(const auto& supply: supplies) {
-            incoming[supply] = 0;
+        for(const auto& supply: supplies)
             q.push(supply);
-        }
 
         while(q.size()) {
             auto& cur = q.front();
