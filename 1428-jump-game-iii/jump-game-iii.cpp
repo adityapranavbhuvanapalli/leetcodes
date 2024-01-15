@@ -5,7 +5,7 @@ public:
         queue<int> q;
         vector<int> visited(n, false);
 
-        if(!arr[start])
+        if (!arr[start])
             return true;
 
         // BFS
