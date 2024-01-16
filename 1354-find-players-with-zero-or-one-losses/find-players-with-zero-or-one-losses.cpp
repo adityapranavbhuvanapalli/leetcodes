@@ -1,21 +1,19 @@
 class Solution {
 public:
     vector<vector<int>> findWinners(vector<vector<int>>& matches) {
-        vector<int> winners, secondwinners;
-        map<int, pair<int, int>> M;
-        for(auto match: matches) {
-            M[match[0]].first++;
-            M[match[0]].second++;
-            M[match[1]].first++;
+        vector<vector<int>> answer(2);
+        map<int, int> losses; 
+
+        for(const auto& match: matches) {
+            if(losses.count(match[0]) == 0)
+                losses[match[0]] = 0;
+            losses[match[1]]++;
         }
 
-        for(auto m: M) {
-            if(m.second.first==m.second.second)
-                winners.push_back(m.first);
-            else if(m.second.first==m.second.second+1)
-                secondwinners.push_back(m.first);
-        }
+        for(const auto& [k, v]: losses)
+            if(v == 0 || v == 1)
+                answer[v].push_back(k);
 
-        return {winners, secondwinners};
+        return answer;
     }
 };
