@@ -9,14 +9,14 @@ public:
 
         input += "\n";
 
-        for(const auto& ch: input) {
-            if(ch == '\t') {
+        for (const auto& ch : input) {
+            if (ch == '\t') {
                 tabs++;
                 continue;
             }
 
-            if(ch == '\n') {
-                while(tabs < s.size()) {
+            if (ch == '\n') {
+                while (tabs < s.size()) {
                     len -= s.top().size();
                     s.pop();
                 }
@@ -25,17 +25,17 @@ public:
                 len += str.size();
                 str = "";
                 tabs = 0;
-                
-                if(isFile) {
+
+                if (isFile) {
                     maxLen = max(maxLen, len + (int)s.size() - 1);
                     isFile = false;
                 }
-                
+
                 continue;
             }
 
             str += ch;
-            if(ch == '.')
+            if (ch == '.')
                 isFile = true;
         }
 
