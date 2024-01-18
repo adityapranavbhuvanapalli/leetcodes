@@ -2,34 +2,16 @@ class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
         int n = nums.size();
-        queue<int> q;
         k = k % n;
-        
-        for(auto& num: nums) {
-            q.push(num);
+        reverse(nums, 0, n-k-1);
+        reverse(nums, n-k, n-1);
+        reverse(nums, 0, n-1);
+    }
 
-            if(q.size() > k) {
-                num = q.front();
-                q.pop();
-            }
-        }
-
-        for(int i=0; i<k; i++) {
-            nums[i] = q.front();
-            q.pop();
+    void reverse(vector<int>& nums, int l, int r) {
+        while(l < r) {
+            swap(nums[l], nums[r]);
+            l++, r--;
         }
     }
 };
-
-/*
-3
-
-1   2   3   4   5   6   7
-1   2   3   1   2   3   4
-
-1   2   3   4              5    6   7
-
-
-5   6   7   1   2   3   4
-4   3   2   1               7   6   5
-*/
