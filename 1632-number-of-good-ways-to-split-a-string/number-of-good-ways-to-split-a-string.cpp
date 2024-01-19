@@ -6,24 +6,21 @@ public:
 
         for(const auto& ch: s) {
             freqR[ch - 'a']++;
-            if(freqR[ch - 'a'] == 1) {
+            if(freqR[ch - 'a'] == 1)
                 countR++;
-            }
         }
 
         for(const auto& ch: s) {
             freqL[ch - 'a']++;
             freqR[ch - 'a']--;
 
-            if(freqL[ch - 'a'] == 1) {
+            if(freqL[ch - 'a'] == 1)
                 countL++;
-            }
 
-            if(freqR[ch - 'a'] == 0) {
+            if(freqR[ch - 'a'] == 0)
                 countR--;
-            }
 
-            // Parse till half
+            // Parse till half (Optimisation)
             if(countL > countR)
                 break;
 
