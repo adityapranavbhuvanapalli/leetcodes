@@ -25,9 +25,8 @@ public:
                 break;
 
             // If count of distinct chars is equal to half of total distinct chars
-            if(countL == countR) {
+            if(countL == countR)
                 res++;
-            }
         }
 
         return res;
