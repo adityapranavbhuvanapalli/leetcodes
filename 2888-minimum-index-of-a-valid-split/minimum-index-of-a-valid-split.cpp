@@ -2,20 +2,25 @@ class Solution {
 public:
     int minimumIndex(vector<int>& nums) {
         unordered_map<int, int> freq;
-        int maxOcc = 0, dominant, n = nums.size();
-
-        for(const auto& num: nums)
-            freq[num]++;
+        int occ = 0, dominant = nums[0], n = nums.size(), freqL = 0, freqR = 0;
 
         // Finding dominant
-        for(const auto& [k, v]: freq) {
-            if(v > maxOcc) {
-                dominant = k;
-                maxOcc = v;
+        for(const auto& num: nums) {
+            if(num == dominant)
+                occ++;
+            else 
+                occ--;
+            
+            if(occ < 0) {
+                dominant = num;
+                occ = 1;
             }
         }
 
-        int freqL = 0, freqR = freq[dominant];
+        for(const auto& num: nums) {
+            if(dominant == num)
+                freqR++;
+        }
 
         // Find split based on frequencies of dominant
         for(int i=0; i<n; i++) {
