@@ -1,7 +1,6 @@
 class Solution {
 public:
     int minimumIndex(vector<int>& nums) {
-        unordered_map<int, int> freq;
         int occ = 0, dominant = nums[0], n = nums.size(), freqL = 0, freqR = 0;
 
         // Finding dominant
