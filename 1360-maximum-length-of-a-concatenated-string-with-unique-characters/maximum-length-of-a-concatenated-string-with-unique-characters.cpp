@@ -2,16 +2,12 @@ class Solution {
 public:
     int maxLength(vector<string>& arr) {
         int n = arr.size();
-        // vector<vector<int>> dp(n, vector<int>(INT_MAX, -1));
         return solve(0, 0, n, arr);
     }
 
     int solve(int i, int mask, int n, vector<string>& arr) {
         if(i >= n)
             return 0;
-
-        // if(dp[i][mask] != -1)
-        //     return dp[i][mask];
 
         int notpick = solve(i+1, mask, n, arr);
 
