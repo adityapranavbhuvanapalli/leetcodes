@@ -70,7 +70,6 @@ public:
         for(int i=1; i<=k; i++) {
             if(position[i][0] == -1 || position[i][1] == -1)
                 return {};
-            // cout<<i<<": "<<position[i][0]<<","<<position[i][1]<<endl;
             res[position[i][0]][position[i][1]] = i;
         }
 
