@@ -11,7 +11,6 @@ public:
             count += (x > 0);
 
         while(r < n) {
-            // cout<<l<<" "<<r;
             
             freqS[s[r]]++;
             if(freqS[s[r]] == freqT[s[r]])
@@ -29,7 +28,6 @@ public:
                 freqS[s[l]]--;
                 l++;
             }
-            // cout<<" "<<minLen<<endl;
         }
 
         return minLen == INT_MAX ? "" : s.substr(start, minLen);
