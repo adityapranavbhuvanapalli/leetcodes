@@ -5,7 +5,6 @@ public:
     Solution(vector<int>& w) {
         int sum = 0;
         prefix.resize(w.size());
-        // sort(w.begin(), w.end());
         n = w.size();
         for(int i=0; i<n; i++) {
             sum += w[i];
@@ -13,16 +12,6 @@ public:
         }
 
         limit = sum;
-    }
-
-    int linear() {
-        int random = rand() % limit;
-        for(int i=0; i<n; i++) {
-            if(prefix[i] > random)
-                return i;
-        }
-
-        return n-1;
     }
 
     int pickIndex() {
