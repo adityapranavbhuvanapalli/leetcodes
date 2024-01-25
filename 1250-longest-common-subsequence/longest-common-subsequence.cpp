@@ -11,9 +11,7 @@ public:
                 diagonal = (i > 0 && j > 0) ? dp[i-1][j-1] : 0;
 
                 dp[i][j] = (text1[i] == text2[j]) ? 1 + diagonal : max(top, left);
-                // cout<<dp[i][j]<<" ";
             }
-            // cout<<endl;
         }
 
         return dp[n1-1][n2-1];
