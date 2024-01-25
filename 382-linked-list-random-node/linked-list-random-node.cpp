@@ -15,18 +15,22 @@ public:
         root = head;
     }
     
-    int getRandom() {   
+    int getRandom() {
         ListNode* cur = root;
+		int random, visitedSize = 0, retVal;
 
-        int n = 0, random = root->val;
-        while(cur) {
-            n++;
-            if(rand() % n == n-1) 
-                random = cur->val;
-            cur = cur->next;
-        }
+		while(cur) {
+			// Either pick cur or don’t pick
+			visitedSize++;
+			random = rand() % visitedSize;
 
-        return random;
+			if(random == visitedSize - 1) {
+				retVal = cur->val;
+			}
+			cur = cur->next;
+		}
+
+		return retVal;
     }
 };
 
