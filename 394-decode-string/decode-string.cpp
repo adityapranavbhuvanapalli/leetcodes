@@ -2,13 +2,13 @@ class Solution {
 public:
     string decodeString(string msg) {
         stack<string> s;
-        int count = 0;
-        string res = "", part = "", compound, num;
+        string res = "", count = "", part = "", compound;
+
         for(const auto& ch: msg) {
             if(ch != ']') {
                 s.push(string(1, ch));
                 continue;
-            } 
+            }
 
             part = "";
             while(s.size() && s.top() != "[") {
@@ -16,18 +16,17 @@ public:
                 s.pop();
             }
 
+            // Popping [
             s.pop();
-            
-            num = "";
+
+            count = "";
             while(s.size() && isdigit(s.top()[0])) {
-                num = s.top() + num;
+                count = s.top() + count;
                 s.pop();
             }
 
-            count = stoi(num);
-
             compound = "";
-            while(count--) {
+            for(int i=0; i<stoi(count); i++) {
                 compound += part;
             }
 
@@ -42,7 +41,6 @@ public:
         return res;
     }
 };
-
 
 /*
 aaa
