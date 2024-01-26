@@ -15,7 +15,7 @@ public:
             return;
         }
 
-         for(int i=n-1; i>=0; i--) {
+         for(int i=n-1; i>index; i--) {
             if(nums[i] > nums[index]) {
                 swap(nums[i], nums[index]);
                 break;
@@ -31,7 +31,7 @@ public:
 1   2   4   3
 1   3   2   4
 1   3   4   2
-1 
+1   4   2   3
 .
 .
 .
