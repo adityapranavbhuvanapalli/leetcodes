@@ -27,7 +27,7 @@ public:
 
 /*
 1. Identify l, r
-    - l = 0
+    - l = 1
     - r = max. of quantities
 
 2. Identify First Positive Version / Last Positive Version
