@@ -3,9 +3,6 @@ public:
     string fractionToDecimal(int num, int den) {
         int sign = 1;
 
-        if(num == 0)
-            return "0";
-
         if((num > 0 && den < 0) || (num < 0 && den > 0))
             sign = -1;
 
