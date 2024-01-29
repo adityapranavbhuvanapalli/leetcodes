@@ -1,14 +1,14 @@
 class Solution {
 public:
     int minimumSum(int n, int k) {
-        int sum = 0, len = 0;
+        int sum = 0, len = 0, top;
 
-        for(int top = 1; top <= min(n, k/2); top++) {
+        for(top = 1; top <= min(n, k/2); top++) {
             sum += top;
             len++;
         }
 
-        int top = k;
+        top = k;
         while(len < n) {
             sum += top;
             top++;
