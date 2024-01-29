@@ -14,15 +14,34 @@ class Solution {
 public:
     vector<vector<int>> findSolution(CustomFunction& customfunction, int z) {
         vector<vector<int>> res;
+        int y;
 
         for(int x=1; x<=z; x++) {
-            for(int y=1; y<=z; y++) {
-                if(customfunction.f(x, y) == z)
-                    res.push_back({x, y});
-            }
+            y = binary(x, z, customfunction);
+            if(y != -1)
+                res.push_back({x, y});
         }
 
         return res;
+    }
+
+    int binary(int x, int z, CustomFunction& customfunction) {
+        int l = 1, r = z, mid, res;
+
+        while(l <= r) {
+            mid = l + (r - l) / 2;
+
+            res = customfunction.f(x, mid);
+            if(res == z) 
+                return mid;
+
+            if(res < z)
+                l = mid + 1;
+            else 
+                r = mid - 1;
+        }
+
+        return -1;
     }
 };
 
