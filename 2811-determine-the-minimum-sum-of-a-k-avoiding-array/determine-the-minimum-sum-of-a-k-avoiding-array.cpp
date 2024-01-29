@@ -1,16 +1,18 @@
 class Solution {
 public:
     int minimumSum(int n, int k) {
-        int sum = 0, top = 1;
-        unordered_set<int> values;
-        while(n) {
-            if(values.count(k - top) == 0) {
-                sum += top;
-                values.insert(top);
-                n--;
-            }
+        int sum = 0, len = 0;
 
+        for(int top = 1; top <= min(n, k/2); top++) {
+            sum += top;
+            len++;
+        }
+
+        int top = k;
+        while(len < n) {
+            sum += top;
             top++;
+            len++;
         }
 
         return sum;
@@ -18,5 +20,11 @@ public:
 };
 
 /*
+k = 8
+1   2   3   4   5   6   7
+0   1   2   3   4   5   6
 
+k = 7
+1   2   3   4   5   6
+0   1   2   3   4   5
 */
