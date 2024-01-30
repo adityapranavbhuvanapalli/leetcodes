@@ -1,5 +1,6 @@
 class Solution {
 public:
+    map<pair<int, int>, int> dp;
     int countArrangement(int n) {
         vector<vector<int>> possible(n+1);
 
@@ -18,6 +19,9 @@ public:
         if(i > n)
             return 1;
 
+        if(dp.count({i, mask}))
+            return dp[{i, mask}];
+
         int res = 0;
         for(const auto& p: possible[i]) {
             // Check if pth bit is already set
@@ -29,6 +33,6 @@ public:
             res += solve(i + 1, newMask, n, possible);
         }
 
-        return res;
+        return dp[{i, mask}] = res;
     }
 };
