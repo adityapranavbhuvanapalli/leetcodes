@@ -11,7 +11,7 @@ public:
                     s.push(op1 + op2);
                 else if(token == "-")
                     s.push(op2 - op1);
-                if(token == "*")
+                else if(token == "*")
                     s.push(op1 * op2);
                 else if(token == "/")
                     s.push(op2 / op1);
