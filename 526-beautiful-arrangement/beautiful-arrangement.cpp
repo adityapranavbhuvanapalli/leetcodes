@@ -1,30 +1,34 @@
 class Solution {
 public:
-    int count = 0;
     int countArrangement(int n) {
-        vector<int> perm(n);
-        for(int i=0; i<n; i++)
-            perm[i] = i + 1;
+        vector<vector<int>> possible(n+1);
 
-        backtrack(0, n, perm);
-        return count;
+        for(int i=1; i<=n; i++) {
+            for(int j=1; j<=n; j++) {
+                if(i % j == 0 || j % i == 0) {
+                    possible[i].push_back(j);
+                }
+            }
+        }
+
+        return solve(1, 0, n, possible);
     }
 
-    void backtrack(int start, int n, vector<int>& perm) {
-        for(int i=0; i<start; i++) {
-            if(!(perm[i] % (i + 1) == 0) && !((i + 1) % perm[i] == 0))
-                return;
+    int solve(int i, int mask, int n, vector<vector<int>>& possible) {
+        if(i > n)
+            return 1;
+
+        int res = 0;
+        for(const auto& p: possible[i]) {
+            // Check if pth bit is already set
+            if((mask & (1 << (p-1))))
+                continue;
+
+            // If not set, solve by setting pth bit
+            int newMask = (mask | (1 << (p-1)));
+            res += solve(i + 1, newMask, n, possible);
         }
 
-        if(start == n) {
-            count++;
-            return;
-        }
-
-        for(int i=start; i<n; i++) {
-            swap(perm[i], perm[start]);
-            backtrack(start+1, n, perm);
-            swap(perm[i], perm[start]);
-        }
+        return res;
     }
 };
