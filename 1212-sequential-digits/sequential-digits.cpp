@@ -1,15 +1,13 @@
 class Solution {
 public:
     vector<int> sequentialDigits(int low, int high) {
-        int x, val, adder = 1;
+        int val, adder = 1;
         vector<int> res;
         for(int i=2; i<10; i++) {
             // Form start val
-            x = val = 1;
-            for(int j=0; j<i-1; j++) {
-                val = val*10 + (x+1);
-                x++;
-            }
+            val = 1;
+            for(int j=1; j<i; j++) 
+                val = val*10 + (j+1);
 
             if(val > high)
                 return res;
