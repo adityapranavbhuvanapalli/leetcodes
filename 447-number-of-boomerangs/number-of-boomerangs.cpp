@@ -1,10 +1,6 @@
 class Solution {
 public:
     int numberOfBoomerangs(vector<vector<int>>& points) {
-        ios::sync_with_stdio(false);
-        cin.tie(nullptr);
-        cout.tie(nullptr);
-
         int res = 0, n = points.size(), distance;
         unordered_map<int, unordered_map<int, int>> M;  //(i, (dist, count))
 
