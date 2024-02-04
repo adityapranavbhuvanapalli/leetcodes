@@ -11,7 +11,6 @@ public:
             count += (x > 0);
 
         while(r < n) {
-            
             freqS[s[r]]++;
             if(freqS[s[r]] == freqT[s[r]])
                 count--;
