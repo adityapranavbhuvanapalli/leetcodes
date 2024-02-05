@@ -7,7 +7,6 @@ public:
         });
         
         for(int i=0; i<n; i++) {
-            // cout<<"("<<points[i][0]<<", "<<points[i][1]<<"), ";
             minY = -1;
             xChisato = points[i][0];
             yChisato = points[i][1];
@@ -22,8 +21,6 @@ public:
                 minY = points[j][1];
             }
         }
-        
-        // cout<<endl;
         
         return count;
     }
