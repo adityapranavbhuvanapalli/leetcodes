@@ -1,28 +1,19 @@
 class Solution {
 public:
     double averageWaitingTime(vector<vector<int>>& customers) {
-        int i = 1, n = customers.size(), time = customers[0][0];
+        int i = 0, n = customers.size(), time = customers[0][0];
         double res = 0;
-        queue<int> q;
 
-        q.push(0);
-        while(q.size()) {
-            int cur = q.front();
-            q.pop();
-            time += customers[cur][1];
-            while(i < n && customers[i][0] <= time) {
-                q.push(i);
-                i++;
-            }
+        while(i < n) {
+            time += customers[i][1];
+            res = res + time - customers[i][0];
 
-            cout<<cur<<": "<<time - customers[cur][0]<<endl;
-            res = res + time - customers[cur][0];
+            // cout<<time<<" ";
 
-            if(i < n && q.empty()) {
-                q.push(i);
-                time = customers[i][0];
-                i++;
-            }
+            if(i < n - 1 && customers[i+1][0] > time)
+                time = customers[i+1][0];
+
+            i++;
         }
 
         return res / (double) n;
