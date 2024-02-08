@@ -8,8 +8,6 @@ public:
             time += customers[i][1];
             res = res + time - customers[i][0];
 
-            // cout<<time<<" ";
-
             if(i < n - 1 && customers[i+1][0] > time)
                 time = customers[i+1][0];
 
