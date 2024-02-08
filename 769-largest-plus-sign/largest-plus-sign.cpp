@@ -2,13 +2,13 @@ class Solution {
 public:
     int orderOfLargestPlusSign(int n, vector<vector<int>>& mines) {
         int res = 0;
-        vector<vector<int>> M(n, vector<int>(n, 1));
+        vector<vector<int>> LR(n, vector<int>(n, 1));
 
         for(const auto& mine: mines) {
-            M[mine[0]][mine[1]] = 0;
+            LR[mine[0]][mine[1]] = 0;
         }
 
-        vector<vector<int>> LR = M, RL = M, TB = M, BT = M;
+        vector<vector<int>> RL = LR, TB = LR, BT = LR;
 
         for(int i=0; i<n; i++) {
             for(int j=1; j<n; j++) {
@@ -31,42 +31,6 @@ public:
                 res = max(res, min({LR[i][j], RL[i][j], TB[i][j], BT[i][j]}));
             }
         }
-
-        // cout<<"LR:"<<endl;
-        // for(const auto& row: LR) {
-        //     for(const auto& e: row) {
-        //         cout<<e<<"\t";
-        //     }
-        //     cout<<endl;
-        // }
-        // cout<<endl;
-
-        // cout<<"TB:"<<endl;
-        // for(const auto& row: TB) {
-        //     for(const auto& e: row) {
-        //         cout<<e<<"\t";
-        //     }
-        //     cout<<endl;
-        // }
-        // cout<<endl;
-
-        // cout<<"RL:"<<endl;
-        // for(const auto& row: RL) {
-        //     for(const auto& e: row) {
-        //         cout<<e<<"\t";
-        //     }
-        //     cout<<endl;
-        // }
-        // cout<<endl;
-
-        // cout<<"BT:"<<endl;
-        // for(const auto& row: BT) {
-        //     for(const auto& e: row) {
-        //         cout<<e<<"\t";
-        //     }
-        //     cout<<endl;
-        // }
-        // cout<<endl;
 
         return res;
     }
