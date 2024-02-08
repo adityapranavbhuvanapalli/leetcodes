@@ -17,6 +17,7 @@ public:
 
         if(zeroes)
             count += (zeroes - 1) / 2;
+            
         return count >= n;
     }
 };
