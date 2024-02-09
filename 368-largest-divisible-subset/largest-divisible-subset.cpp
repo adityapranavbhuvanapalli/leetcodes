@@ -19,10 +19,6 @@ public:
             }
         }
 
-        // cout<<maxLen<<" "<<maxIdx<<endl;
-        // for(const auto& num: parent)
-        //     cout<<num<<" ";
-
         while(maxIdx != -1) {
             res.push_back(nums[maxIdx]);
             maxIdx = parent[maxIdx];
