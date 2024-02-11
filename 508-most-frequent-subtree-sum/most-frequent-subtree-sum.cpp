@@ -32,14 +32,10 @@ public:
 
         int l = sum(root->left);
         int r = sum(root->right);
-
-        sumsFreq[l + r + root->val]++;
-        if(maxFreq < sumsFreq[l + r + root->val])
-            maxFreq = sumsFreq[l + r + root->val];
+        int rootSum = l + r + root->val;
+        sumsFreq[rootSum]++;
+        if(maxFreq < sumsFreq[rootSum])
+            maxFreq = sumsFreq[rootSum];
         return l + r + root->val;
     }
 };
-
-/*
-
-*/
