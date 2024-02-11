@@ -1,9 +1,9 @@
 class Solution {
 public:
-    vector<vector<vector<int>>> dp;
+    int dp[70][70][70];
     int cherryPickup(vector<vector<int>>& grid) {
         int m = grid.size(), n = grid[0].size();
-        dp = vector<vector<vector<int>>>(m, vector<vector<int>>(n, vector<int>(n, -1)));
+        memset(dp, -1, sizeof(dp));
         return solve(0, 0, n-1, m, n, grid);
     }
 
@@ -22,7 +22,7 @@ public:
                 X = col1 + i, Y = col2 + j;
                 if(X < 0 || X >= n || Y < 0 || Y >= n)
                     continue;
-                    
+
                 res = max(res, profit + solve(row + 1, X, Y, m, n, grid));
             }
         }
