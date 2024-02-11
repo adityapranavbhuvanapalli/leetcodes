@@ -1,26 +1,22 @@
 class Solution {
 public:
-    // -1: a, 0: b, 1: c
     int countMatchingSubarrays(vector<int>& nums, vector<int>& pattern) {
         int n = nums.size();
-        string haystack = "", needle = "";
-        string ref = "abc";
+        vector<int> haystack(n - 1, 0);
+        
         for(int i=0; i<n-1; i++) {
             if(nums[i] < nums[i+1])
-                haystack += ref[2];
+                haystack[i] = 1;
             else if(nums[i] > nums[i+1])
-                haystack += ref[0];
+                haystack[i] = -1;
             else
-                haystack += ref[1];
+                haystack[i] = 0;
         }
 
-        for(const auto& p: pattern)
-            needle += ref[p + 1];
-
-        return kmp(haystack, needle);
+        return kmp(haystack, pattern);
     }
 
-    int kmp(string& haystack, string& pattern) {
+    int kmp(vector<int>& haystack, vector<int>& pattern) {
         int n = haystack.size(), m = pattern.size();
         int i, j, prevlps, count = 0;
         vector<int> lps(m, 0);
@@ -53,8 +49,10 @@ public:
                     j = lps[j - 1];
                 }
             }
-            if(j == m)
+            if(j == m) {
                 count++;
+                j = lps[j - 1];
+            }
         }
 
         return count;
