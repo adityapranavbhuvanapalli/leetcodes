@@ -12,13 +12,13 @@
 class Solution {
 public:
     bool flipEquiv(TreeNode* root1, TreeNode* root2) {
-        if(!root1 && !root2)
+        if(root1 == nullptr && root2 == nullptr)
             return true;
 
-        if(!root1 || !root2)
+        if(root1 == nullptr || root2 == nullptr)
             return false;
 
-        return root1->val == root2->val && (
+        return (root1->val == root2->val) && (
             (flipEquiv(root1->left, root2->left) && flipEquiv(root1->right, root2->right)) ||
             (flipEquiv(root1->left, root2->right) && flipEquiv(root1->right, root2->left))
         );
@@ -27,6 +27,6 @@ public:
 
 /*
 1 == 1
-1->l, 2->r && 1->r, 2->l
-1->l, 2->l && 1->r, 2->r
+roo1->left, root2->left && root1->right, root2->right
+root1->left, root2->right && root1->right, root2->left
 */
