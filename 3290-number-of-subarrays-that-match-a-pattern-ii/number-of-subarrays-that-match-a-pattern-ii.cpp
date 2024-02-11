@@ -1,0 +1,62 @@
+class Solution {
+public:
+    // -1: a, 0: b, 1: c
+    int countMatchingSubarrays(vector<int>& nums, vector<int>& pattern) {
+        int n = nums.size();
+        string haystack = "", needle = "";
+        string ref = "abc";
+        for(int i=0; i<n-1; i++) {
+            if(nums[i] < nums[i+1])
+                haystack += ref[2];
+            else if(nums[i] > nums[i+1])
+                haystack += ref[0];
+            else
+                haystack += ref[1];
+        }
+
+        for(const auto& p: pattern)
+            needle += ref[p + 1];
+
+        return kmp(haystack, needle);
+    }
+
+    int kmp(string& haystack, string& pattern) {
+        int n = haystack.size(), m = pattern.size();
+        int i, j, prevlps, count = 0;
+        vector<int> lps(m, 0);
+
+        // Pre-Processing
+        prevlps = 0, i = 1;
+        while(i < m) {
+            if(pattern[i] == pattern[prevlps]) {
+                lps[i] = prevlps + 1;
+                prevlps = lps[i];
+                i++;
+            } else {
+                if(prevlps == 0) {
+                    i++;
+                } else {
+                    prevlps = lps[prevlps - 1];
+                }
+            }
+        }
+
+        // Matching
+        i = 0, j = 0;
+        while(i < n) {
+            if(haystack[i] == pattern[j]) {
+                i++, j++;
+            } else {
+                if(j == 0) {
+                    i++;
+                } else {
+                    j = lps[j - 1];
+                }
+            }
+            if(j == m)
+                count++;
+        }
+
+        return count;
+    }
+};
