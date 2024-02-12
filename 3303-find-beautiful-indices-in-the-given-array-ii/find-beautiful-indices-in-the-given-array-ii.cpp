@@ -23,6 +23,7 @@ public:
     }
 
     vector<int> kmp(string& haystack, string& needle) {
+        needle += '-';
         int m = needle.size(), n = haystack.size();
         int i, j, prevlps;
         vector<int> res(n, 0);
@@ -53,9 +54,9 @@ public:
                     j = lps[j - 1];
             }
 
-            if(j == m) {
-                j = lps[j - 1];
-                res[i - m] = 1;
+            if(j == m-1) {
+                // j = lps[j - 1];
+                res[i - m + 1] = 1;
             }
         }
 
