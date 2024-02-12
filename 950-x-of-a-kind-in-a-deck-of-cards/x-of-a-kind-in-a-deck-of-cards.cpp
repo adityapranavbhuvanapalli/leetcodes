@@ -7,7 +7,6 @@ public:
         for(const auto& d: deck)
             count[d]++;
 
-
         for(const auto& [k, v]: count) {
             if(x == -1) {
                 x = v;
