@@ -10,17 +10,17 @@ public:
             graph[time[0]].push_back({time[1], time[2]});
         }
 
-        queue<int> q;
-        q.push(k);
+        priority_queue<int, vector<int>, greater<int>> pq;
+        pq.push(k);
         dist[k] = 0;
-        while(q.size()) {
-            int cur = q.front();
-            q.pop();
+        while(pq.size()) {
+            int cur = pq.top();
+            pq.pop();
             
             for(const auto& [adj, d]: graph[cur]) {
                 if(dist[adj] > dist[cur] + d) {
                     dist[adj] = dist[cur] + d;
-                    q.push(adj);
+                    pq.push(adj);
                 }
             }
         }
