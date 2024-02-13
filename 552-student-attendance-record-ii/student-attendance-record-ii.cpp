@@ -1,9 +1,9 @@
 class Solution {
 public:
     const int MOD = 1e9 + 7;
-    vector<vector<vector<int>>> dp;
+    int dp[(int)1e5 + 1][3][4];
     int checkRecord(int n) {
-        dp = vector<vector<vector<int>>>(n + 1, vector<vector<int>>(2, vector<int>(3, -1)));
+        memset(dp, -1, sizeof(dp));
         return solve(n, 0, 0);
     }
 
