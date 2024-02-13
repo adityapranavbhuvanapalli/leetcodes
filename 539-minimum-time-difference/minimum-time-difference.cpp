@@ -12,7 +12,6 @@ public:
         sort(minutes.begin(), minutes.end());
 
         for(int i=0; i<n; i++) {
-            // cout<<minutes[i]<<" ";
             int a = minutes[i];
             int b = minutes[(i + 1) % n];
 
