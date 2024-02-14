@@ -1,20 +1,16 @@
 class Solution {
 public:
     vector<int> rearrangeArray(vector<int>& nums) {
-        int k = 0, n = nums.size();
-        vector<int> pos, neg;
+        int n = nums.size();
+        vector<int> res(n);
 
+        int pos = 0, neg = 1;
         for(const auto& num: nums) {
-            auto& array = (num > 0) ? pos : neg;   
-            array.push_back(num);
+            auto& idx = (num > 0) ? pos : neg;
+            res[idx] = num;
+            idx += 2;
         }
 
-        for(int i=0; i<n/2; i++) {
-            nums[k] = pos[i];
-            nums[k+1] = neg[i];
-            k += 2;
-        }
-
-        return nums;
+        return res;
     }
 };
