@@ -7,21 +7,15 @@ public:
     }
     
     int next(int n) {
-        // cout<<n<<": ";
         while(idx < RLE.size() && n > RLE[idx]) {
             n -= RLE[idx];
             idx += 2;
         }
 
-        if(idx >= RLE.size()) {
-            // cout<<-1<<endl;
+        if(idx >= RLE.size())
             return -1;
-        }
 
         RLE[idx] -= n;
-        // for(const auto& r: RLE)
-        //     cout<<r<<" ";
-        // cout<<" : "<<idx<<" -> "<<RLE[idx + 1]<<endl;
 
         return RLE[idx + 1];
     }
