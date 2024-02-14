@@ -20,7 +20,9 @@ public:
                     q.push({pos + speed, speed * 2});
 
                 // R
-                if(visited.insert({pos, -speed / abs(speed)}).second)
+                // Perform R only if car is moving away from the target
+                if(visited.insert({pos, -speed / abs(speed)}).second && 
+                    ((pos + speed > target && speed > 0) || (pos + speed < target and speed < 0)))
                     q.push({pos, -speed / abs(speed)});
 
                 q.pop();
