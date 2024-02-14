@@ -9,8 +9,6 @@ public:
             while(end[i2] == 'X')
                 i2++;
 
-            // cout<<i1<<" "<<i2<<endl;
-
             if(i1 == n || i2 == n)
                 break;
 
