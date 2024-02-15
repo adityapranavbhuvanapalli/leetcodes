@@ -4,23 +4,18 @@ public:
     vector<vector<pair<int, int>>> snapshotArray;
     SnapshotArray(int length) {
         snapshotArray = vector<vector<pair<int, int>>>(length, {{0, 0}});
-        // display();
     }
     
     void set(int index, int val) {
-        // cout<<snapshotArray[index].back().first<<" "<<snaps<<endl;
         if(snapshotArray[index].back().first < snaps) {
             snapshotArray[index].push_back({snaps, val});
-            // display();
             return;
         }
 
         snapshotArray[index].back().second = val;
-        // display();
     }
     
     int snap() {
-        // cout<<"Snap: "<<snaps<<endl<<endl;
         return snaps++;
     }
     
@@ -42,16 +37,6 @@ public:
         }
 
         return array[r].second;
-    }
-
-    void display() {
-        cout<<"Snapshot Array: "<<endl;
-        for(const auto& row: snapshotArray) {
-            for(const auto& [snapId, val]: row)
-                cout<<"{"<<snapId<<","<<val<<"} ";
-            cout<<endl;
-        }
-        cout<<endl;
     }
 };
 
