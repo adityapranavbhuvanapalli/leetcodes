@@ -1,22 +1,19 @@
 class Solution {
 public:
     long long largestPerimeter(vector<int>& nums) {
-        long long sum = 0, perimeter;
-        priority_queue<int> pq;
+        int n = nums.size();
+        long long sum = 0;
+        
+        sort(nums.begin(), nums.end());
 
-        for(const auto& num: nums) {
+        for(const auto& num: nums)
             sum += num;
-            pq.push(num);
-        }
 
-        while(pq.size() >= 2) {
-            int top = pq.top();
-
-            if(sum - top > top)
+        for(int i=n-1; i>=0; i--) {
+            if(sum - nums[i] > nums[i])
                 return sum;
 
-            sum -= top;
-            pq.pop();
+            sum -= nums[i];
         }
 
         return -1;
