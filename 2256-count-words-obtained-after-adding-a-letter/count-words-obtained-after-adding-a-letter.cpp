@@ -20,25 +20,22 @@ public:
 
         cur->wordEnd = true;
     }
-
-    bool search(int i, int n, string& word, TrieNode* cur, bool mismatch) {
+    
+    // DFS search for string maximum 1 mismatch
+    bool search(int i, int n, string& s, TrieNode* cur, bool ignored) {
         if(i >= n)
-            return cur->wordEnd && mismatch;
+            return cur->wordEnd && ignored;
 
-        bool res = false;
+        bool pick = false, notpick = false;
+        if(cur->child[s[i] - 'a'])
+            pick = search(i + 1, n, s, cur->child[s[i] - 'a'], ignored);
 
-        if(cur->child[word[i] - 'a'])
-            res = search(i + 1, n, word, cur->child[word[i] - 'a'], mismatch);
+        if(!ignored)  
+            notpick = search(i + 1, n, s, cur, true);      
 
-        if(res)
-            return true;
-
-        if(mismatch)
-            return false;
-
-        return search(i + 1, n, word, cur, true);
-
+        return pick || notpick;
     }
+
 
     int wordCount(vector<string>& startWords, vector<string>& targetWords) {
         int count = 0;
@@ -50,12 +47,9 @@ public:
         }
 
         for(auto& word: targetWords) {
-            cout<<word<<": ";
             sort(word.begin(), word.end());
-            if(search(0, word.size(), word, root, false)) {
+            if(search(0, word.size(), word, root, false))
                 count++;
-            }
-            cout<<count<<endl;
         }
 
         return count;
