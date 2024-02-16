@@ -1,10 +1,9 @@
 class Solution {
 public:
-    vector<long long> res;
     vector<long long> maximumEvenSplit(long long finalSum) {
         // If number is odd
         if(finalSum & 1)
-            return res;
+            return {};
             
         long long currSum = 0, i = 2;
         vector<long long> res;
@@ -13,7 +12,6 @@ public:
         while(currSum + i <= finalSum) {
             res.push_back(i);
             currSum += i;
-            // cout<<i<<" "<<currSum<<" "<<endl;
             i += 2;
         }
 
