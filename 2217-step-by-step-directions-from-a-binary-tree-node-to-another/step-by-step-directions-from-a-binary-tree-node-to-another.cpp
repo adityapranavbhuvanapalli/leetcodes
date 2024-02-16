@@ -19,7 +19,7 @@ public:
         string destination = "";
         getLCAToDest(lca, destination, destValue);
 
-        return  source + destination;
+        return source + destination;
     }
 
     int getDepth(TreeNode* root, int startValue) {
