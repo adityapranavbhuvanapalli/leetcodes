@@ -26,4 +26,7 @@ public:
 
 Sort based on Attack so we have to consider only Defence 
 Iterate from end and keep track of max value so far
+
+If Attack is equal, we cant use the traditional sorted way
+Sort 2nd parameter descending so the min value is screened first
 */
