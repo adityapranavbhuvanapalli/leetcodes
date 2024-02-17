@@ -39,6 +39,7 @@ public:
         for(auto& word: words)
             res.push_back(findScore(root, word));
 
+        delete(root);
         return res;
     }
 };
