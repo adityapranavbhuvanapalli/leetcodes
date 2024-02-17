@@ -1,9 +1,8 @@
 class Solution {
 public:
     struct TrieNode {
-        int prefixCount;
+        int prefixCount = 0;
         TrieNode* child[26] = {nullptr};
-        TrieNode(): prefixCount(0), child() {}
     };
 
     void insert(TrieNode* root, string& s) {
