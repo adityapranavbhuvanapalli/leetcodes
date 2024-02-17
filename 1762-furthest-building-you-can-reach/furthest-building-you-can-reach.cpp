@@ -11,8 +11,6 @@ public:
             if(diff <= 0)
                 continue;
 
-            // cout<<i<<": "<<diff<<" "<<bricks<<" "<<ladders<<endl;
-
             // If bricks are available, use 'diff' bricks to move forward
             if(bricks >= diff) {
                 pq.push(diff);
