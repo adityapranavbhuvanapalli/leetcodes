@@ -27,7 +27,7 @@ public:
             // If bricks are not available and ladders are there, use ladders for the biggest jump till i+1
             // The biggest jump can be current or previous 
             // If it is previous, then use the ladder instead of the bricks and increment the bricks by that amount
-            if(pq.size() && diff < pq.top()) {
+            if(pq.size() && diff <= pq.top()) {
                 bricks += pq.top() - diff;
                 pq.pop();
                 pq.push(diff);
