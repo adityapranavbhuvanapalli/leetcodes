@@ -4,18 +4,13 @@ public:
     int punishmentNumber(int n) {
         int punishment = 0;
         for(int i=1; i<=n; i++) {
-            if(check(i)) {
+            string str = to_string(i * i);
+            int sz = str.size();
+            if(solve(0, i, sz, str)) {
                 punishment += (i * i);
             }
         }
         return punishment;
-    }
-
-    bool check(int i) {
-        int sqr = i * i;
-        string str = to_string(sqr);
-        int n = str.size();
-        return solve(0, i, n, str);
     }
 
     bool solve(int start, int num, int n, string& s) {
