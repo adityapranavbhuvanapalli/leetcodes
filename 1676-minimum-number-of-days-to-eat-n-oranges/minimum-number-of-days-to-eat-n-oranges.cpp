@@ -3,9 +3,9 @@ public:
     int minDays(int n) {
         queue<int> q;
         int count = 0;
-        vector<bool> visited(n + 1, false);
+        unordered_set<int> visited;
         q.push(n);
-        visited[n] = true;
+        visited.insert(n);
 
         while(q.size()) {
             int sz = q.size();
@@ -16,19 +16,19 @@ public:
                 if(num == 0)
                     return count;
 
-                if(visited[num - 1] == 0) {
+                if(visited.count(num - 1) == 0) {
                     q.push(num - 1);
-                    visited[num - 1] = true;
+                    visited.insert(num - 1);
                 }
 
-                if(num % 2 == 0 && visited[num / 2] == 0) {
+                if(num % 2 == 0 && visited.count(num / 2) == 0) {
                     q.push(num / 2);
-                    visited[num / 2] = true;
+                    visited.insert(num / 2);
                 }
 
-                if(num % 3 == 0 && visited[num / 3] == 0) {
+                if(num % 3 == 0 && visited.count(num / 3) == 0) {
                     q.push(num / 3);
-                    visited[num / 3] = true;
+                    visited.insert(num / 3);
                 }
             }
             count++;
