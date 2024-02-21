@@ -1,44 +1,64 @@
 class Solution {
 public:
     int lengthLongestPath(string input) {
-        int maxLen = 0, len = 0;
-        bool isFile = false;
-        int tabs = 0;
         stack<string> s;
-        string str = "";
+        string cur = "";
+        int tabs = -1, curTabCount = 0, curLength = 0, maxVal = 0;
+        bool file = false;
+
+        cout<<input<<endl;
 
         input += "\n";
 
-        for (const auto& ch : input) {
-            if (ch == '\t') {
-                tabs++;
+        for(const auto& ch: input) {
+            if(ch == '\t') {
+                curTabCount++;
                 continue;
             }
 
-            if (ch == '\n') {
-                while (tabs < s.size()) {
-                    len -= s.top().size();
+            if(ch == '\n') {
+                while(curTabCount < s.size()) {
+                    curLength -= s.top().size();
+                    tabs--;
                     s.pop();
                 }
 
-                s.push(str);
-                len += str.size();
-                str = "";
-                tabs = 0;
+                tabs++;
+                curLength += cur.size();
+                s.push(cur);
 
-                if (isFile) {
-                    maxLen = max(maxLen, len + (int)s.size() - 1);
-                    isFile = false;
+                cout<<cur<<": "<<tabs<<" "<<curLength<<endl;
+
+                if(file) {
+                    maxVal = max(maxVal, curLength + tabs);
+                    file = false;
                 }
 
+                cur = "";
+                curTabCount = 0;
                 continue;
             }
 
-            str += ch;
-            if (ch == '.')
-                isFile = true;
+            if(ch == '.') {
+                file = true;
+            }
+
+            cur += ch;
         }
 
-        return maxLen;
+        return maxVal;
     }
 };
+
+/*
+maxVal = 18
+curLength = 10
+curTabCount = 2
+tabs = 1
+
+cur = subsubdir1
+
+dir 
+subdir1
+
+*/
