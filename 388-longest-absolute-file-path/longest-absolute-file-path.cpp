@@ -3,10 +3,8 @@ public:
     int lengthLongestPath(string input) {
         stack<string> s;
         string cur = "";
-        int tabs = -1, curTabCount = 0, curLength = 0, maxVal = 0;
+        int curTabCount = 0, curLength = 0, maxVal = 0;
         bool file = false;
-
-        cout<<input<<endl;
 
         input += "\n";
 
@@ -19,18 +17,14 @@ public:
             if(ch == '\n') {
                 while(curTabCount < s.size()) {
                     curLength -= s.top().size();
-                    tabs--;
                     s.pop();
                 }
 
-                tabs++;
                 curLength += cur.size();
                 s.push(cur);
 
-                cout<<cur<<": "<<tabs<<" "<<curLength<<endl;
-
                 if(file) {
-                    maxVal = max(maxVal, curLength + tabs);
+                    maxVal = max(maxVal, curLength + (int)s.size() - 1);
                     file = false;
                 }
 
