@@ -2,7 +2,6 @@ class Solution {
 public:
     bool isRectangleCover(vector<vector<int>>& rectangles) {
         long x1 = INT_MAX, x2 = INT_MIN, y1 = INT_MAX, y2 = INT_MIN, area = 0;
-        bool corners = true;
         set<pair<int, int>> points;
         
         for(const auto& r: rectangles) {
