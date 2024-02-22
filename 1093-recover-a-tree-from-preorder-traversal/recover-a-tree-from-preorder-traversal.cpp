@@ -33,9 +33,8 @@ public:
                 continue;
             }
 
-            while(curTabCount < s.size()) {
+            while(curTabCount < s.size())
                 s.pop();
-            }
             
             // Add node to tree
             TreeNode* node = new TreeNode(stoi(cur));
