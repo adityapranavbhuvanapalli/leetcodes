@@ -13,6 +13,7 @@ public:
             graph[edges[i][1]].push_back({edges[i][0], succProb[i]});
         }
         
+        // Dijkstra
         pq.push({1, start});
         probs[start] = 1;
         while(pq.size()) {
