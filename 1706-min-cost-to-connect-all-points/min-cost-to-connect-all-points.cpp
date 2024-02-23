@@ -20,7 +20,7 @@ public:
             }
         }
 
-        while(pq.size()) {
+        while(pq.size() && components > 1) {
             auto top = pq.top();
             pq.pop();
 
