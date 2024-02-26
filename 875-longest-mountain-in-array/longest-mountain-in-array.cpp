@@ -48,7 +48,6 @@ public:
                 i++;
             }
 
-            cout<<i<<" ";
             longest = max(longest, lenSoFar);
             lenSoFar = 0;
         }
