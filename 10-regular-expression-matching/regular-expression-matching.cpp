@@ -1,5 +1,6 @@
 class Solution {
 public:
+    map<pair<int, int>, int> dp;
     bool isMatch(string s, string p) {
         int ns = s.size(), np = p.size();
         return solve(0, 0, ns, np, s, p);    
@@ -9,12 +10,15 @@ public:
         if(j == np)
             return i == ns;
 
-        bool match = (p[j] == '.' || s[i] == p[j]);
+        if(dp.count({i, j}) == 1)
+            return dp[{i, j}];
+
+        bool match = i < ns && (p[j] == '.' || s[i] == p[j]);
 
         if(j + 1 < np && p[j + 1] == '*') 
-            return (i < ns && match && solve(i+1, j, ns, np, s, p)) || solve(i, j+2, ns, np, s, p); 
+            return (match && solve(i+1, j, ns, np, s, p)) || solve(i, j+2, ns, np, s, p); 
              
-        return i < ns && match && solve(i+1, j+1, ns, np, s, p);
+        return dp[{i, j}] = match && solve(i+1, j+1, ns, np, s, p);
     }
 }; 
 
