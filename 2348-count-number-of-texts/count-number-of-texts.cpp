@@ -1,7 +1,7 @@
 class Solution {
 public:
     const int MOD = 1e9 + 7;
-    vector<string> ref = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    vector<int> ref = {0, 0, 3, 3, 3, 3, 3, 4, 3, 4};
     vector<int> dp;
     int countTexts(string pressedKeys) {
         int n = pressedKeys.size();
@@ -17,14 +17,10 @@ public:
             return dp[i];
 
         int sum = 0;
-        int sz = ref[pressedKeys[i] - '0'].size();
+        int sz = ref[pressedKeys[i] - '0'];
 
-        for(int j=0; j<sz; j++) {
-            if(i + j >= n || pressedKeys[i + j] != pressedKeys[i])
-                break;
-
+        for(int j=0; j < sz && i + j < n && pressedKeys[i + j] == pressedKeys[i]; j++)
             sum = (sum + solve(i + j + 1, n, pressedKeys)) % MOD;
-        }
 
         return dp[i] = sum;
     }
