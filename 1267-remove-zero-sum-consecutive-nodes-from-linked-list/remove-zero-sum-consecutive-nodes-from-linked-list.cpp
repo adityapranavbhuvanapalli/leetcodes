@@ -45,7 +45,7 @@ public:
             cur = prefix[sum]->next;
         }
 
-        return sum == 0 ? nullptr : start;
+        return start;
     }
 };
 
