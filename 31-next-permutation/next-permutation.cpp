@@ -1,39 +1,28 @@
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
-        int index, n = nums.size();
+        int n = nums.size();
+        int pivot = n - 2;
 
-        for(int i=n-2; i>=0; i--) {
-            if(nums[i] < nums[i+1]) {
-                index = i;
-                break;
+        while(pivot >= 0 && nums[pivot] >= nums[pivot + 1])
+            pivot--;
+
+        // cout<<pivot<<" ";
+        if(pivot != -1) {
+            int next = n - 1;
+            while(next > pivot && nums[next] <= nums[pivot]) {
+                next--;
             }
+            swap(nums[pivot], nums[next]);
+            // cout<<next<<endl;
         }
-
-        if(index == -1) {
-            reverse(nums.begin(), nums.end());
-            return;
-        }
-
-         for(int i=n-1; i>index; i--) {
-            if(nums[i] > nums[index]) {
-                swap(nums[i], nums[index]);
-                break;
-            }
-        }
-         
-        reverse(nums.begin() + index + 1, nums.end());
+        
+        sort(nums.begin() + pivot + 1, nums.end());
     }
 };
 
 /*
-1   2   3   4
-1   2   4   3
-1   3   2   4
-1   3   4   2
-1   4   2   3
-.
-.
-.
-4   3   2   1
+1   2   3
+1   3   2
+p
 */
