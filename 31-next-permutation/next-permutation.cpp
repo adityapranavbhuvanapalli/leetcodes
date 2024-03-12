@@ -7,14 +7,12 @@ public:
         while(pivot >= 0 && nums[pivot] >= nums[pivot + 1])
             pivot--;
 
-        // cout<<pivot<<" ";
         if(pivot != -1) {
             int next = n - 1;
             while(next > pivot && nums[next] <= nums[pivot]) {
                 next--;
             }
             swap(nums[pivot], nums[next]);
-            // cout<<next<<endl;
         }
 
         reverse(nums.begin() + pivot + 1, nums.end());
