@@ -16,8 +16,8 @@ public:
             swap(nums[pivot], nums[next]);
             // cout<<next<<endl;
         }
-        
-        sort(nums.begin() + pivot + 1, nums.end());
+
+        reverse(nums.begin() + pivot + 1, nums.end());
     }
 };
 
