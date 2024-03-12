@@ -12,12 +12,17 @@ public:
                 int first = points[i][0] - points[j][0];
                 int second = points[i][1] - points[j][1];
                 distance = first * first + second * second;
-                res += M[i][distance];
+                // res += 2 * M[i][distance];
                 M[i][distance]++;
             }
         }
 
-        return 2 * res;
+        for(int i=0; i<n; i++) {
+            for(const auto& [k, v]: M[i]) 
+                res += v * (v - 1);
+        }
+
+        return res;
     }
 };
 
@@ -33,12 +38,4 @@ public:
     
 2,0
     ..
-
-n -> n*(n-1)
-
-1   2   3   4   5
-res = 20
-
-
-2 + 4 + 6 + 8
 */
