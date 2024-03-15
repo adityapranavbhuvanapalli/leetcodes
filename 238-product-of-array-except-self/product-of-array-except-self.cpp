@@ -16,17 +16,6 @@ public:
             tmp = nums[i];
         }
 
-        // cout<<"Prefix: ";
-        // for(const auto& a: nums)
-        //     cout<<a<<" ";
-        // cout<<endl;
-
-        
-        // cout<<"Suffix: ";
-        // for(const auto& a: res)
-        //     cout<<a<<" ";
-        // cout<<endl;   
-
         for(int i=0; i<n; i++) {
             int left = (i > 0) ? nums[i - 1] : 1;
             int right = (i < n - 1) ? res[i + 1] : 1;
