@@ -5,7 +5,7 @@ public:
         sort(events.begin(), events.end());
         priority_queue <int, vector<int>, greater<int>> pq;
         
-        for(int d = 1; d <= 100000; ++d) {
+        for(int d = 1; d <= 100000; d++) {
             while(pq.size() && pq.top() < d)
                 pq.pop();
             
