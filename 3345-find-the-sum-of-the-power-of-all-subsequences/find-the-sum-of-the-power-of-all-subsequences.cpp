@@ -5,9 +5,10 @@ public:
     int power2[101] = {1};
     int sumOfPower(vector<int>& nums, int k) {
         int n = nums.size();
-        for(int i=1; i<n; i++) {
+        
+        for(int i=1; i<n; i++)
             power2[i] = (power2[i - 1] * 2) % MOD;
-        }
+
         memset(dp, -1, sizeof(dp));
         return solve(0, n, nums, k, 0);
     }
