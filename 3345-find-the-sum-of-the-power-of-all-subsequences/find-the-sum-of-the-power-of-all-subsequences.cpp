@@ -2,10 +2,9 @@ class Solution {
 public:
     const int MOD = 1e9 + 7;
     int dp[101][101][101];
-    vector<int> power2;
+    int power2[101] = {1};
     int sumOfPower(vector<int>& nums, int k) {
         int n = nums.size();
-        power2 = vector<int>(100, 1);
         for(int i=1; i<n; i++) {
             power2[i] = (power2[i - 1] * 2) % MOD;
         }
