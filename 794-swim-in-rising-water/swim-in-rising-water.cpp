@@ -4,30 +4,24 @@ public:
         int n = grid.size();
         priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> pq;
         vector<pair<int, int>> dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-        vector<vector<int>> visited(n, vector<int>(n, 0));
+        vector<vector<int>> dist(n, vector<int>(n, INT_MAX));
 
         pq.push({grid[0][0], 0, 0});
         while(pq.size()) {
-            int time = pq.top()[0];
-            int x = pq.top()[1];
-            int y = pq.top()[2];
+            auto& top = pq.top();
+            int time = top[0], x = top[1], y = top[2];
             pq.pop();
 
-            if(x == n-1 && y == n-1)
+            if(x == n - 1 && y == n - 1)
                 return time;
 
-            for(int k=0; k<4; k++) {
-                if(visited[x][y] & (1<<k))
-                    continue;
-
-                auto& [dx, dy] = dirs[k];
+            for(const auto& [dx, dy]: dirs) {
                 int X = x + dx, Y = y + dy;
 
-                if(X < 0 || X >= n || Y < 0 || Y >= n)
-                    continue;
-
-                visited[x][y] = visited[x][y] | (1 << k);
-                pq.push({max(time, grid[X][Y]), X, Y});
+                if(X>=0 && X<n && Y>=0 && Y<n && time < dist[X][Y]) {
+                    dist[X][Y] = time;
+                    pq.push({max(time, grid[X][Y]), X, Y});
+                }
             }
         }
 
