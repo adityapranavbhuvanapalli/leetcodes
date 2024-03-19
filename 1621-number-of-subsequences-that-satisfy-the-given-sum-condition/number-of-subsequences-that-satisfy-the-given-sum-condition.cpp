@@ -27,8 +27,8 @@ public:
         return res;
     }
 
-    int binarySearch(int left, int right, vector<int>& nums, int val) {
-        int l = left, r = right, mid;
+    int binarySearch(int l, int r, vector<int>& nums, int val) {
+        int mid;
 
         while(l < r) {
             mid = l + ceil((r - l) / 2.0);
