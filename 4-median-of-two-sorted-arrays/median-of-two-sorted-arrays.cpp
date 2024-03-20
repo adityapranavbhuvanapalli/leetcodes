@@ -13,8 +13,6 @@ public:
         while(l <= r) {
             mid1 = l + (r - l) / 2;
             mid2 = half - mid1;
-        
-            // cout<<mid1<<" "<<mid2;
 
             int left1 = mid1 > 0 ? nums1[mid1 - 1] : INT_MIN;
             int left2 = mid2 > 0 ? nums2[mid2 - 1] : INT_MIN;
