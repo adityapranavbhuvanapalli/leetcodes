@@ -1,7 +1,7 @@
 class Solution {
 public:
     const int MOD = 1e9 + 7;
-    int dp[(int)1e5 + 1][3][4];
+    int dp[(int)1e5 + 1][2][3];
     int checkRecord(int n) {
         memset(dp, -1, sizeof(dp));
         return solve(n, 0, 0);
