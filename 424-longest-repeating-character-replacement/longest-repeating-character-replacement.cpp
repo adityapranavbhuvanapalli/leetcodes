@@ -1,30 +1,32 @@
 class Solution {
 public:
     int characterReplacement(string s, int K) {
-        int n = s.size(), maxVal = 0;
+        int n = s.size(), maxLen = 0;
 
-        for(char ch='A'; ch<='Z'; ch++) {
+        for(char ch = 'A'; ch <= 'Z'; ch++) {
             int k = K, l = 0;
             for(int r=0; r<n; r++) {
                 k -= (s[r] != ch);
 
-                while(k < 0)
-                    k += (s[l++] != ch);
+                while(k < 0) {
+                    k += (s[l] != ch);
+                    l++;
+                } 
 
-                maxVal = max(maxVal, r - l + 1);
+                maxLen = max(maxLen, r - l + 1);
             } 
-        }
-        
-        return maxVal;
+        }   
+
+        return maxLen;
     }
 };
 
 /*
 ABAB
 l
-  r
+   r
 
 AABABBA
-l
-    r
+     l
+      r
 */
