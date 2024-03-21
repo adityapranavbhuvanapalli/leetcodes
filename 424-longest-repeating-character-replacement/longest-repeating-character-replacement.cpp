@@ -1,10 +1,10 @@
 class Solution {
 public:
-    int characterReplacement(string s, int K) {
+    int characterReplacement(string s, int k) {
         int n = s.size(), maxLen = 0;
 
         for(char ch = 'A'; ch <= 'Z'; ch++) {
-            int k = K, l = 0;
+            int l = 0;
             for(int r=0; r<n; r++) {
                 k -= (s[r] != ch);
 
@@ -15,6 +15,11 @@ public:
 
                 maxLen = max(maxLen, r - l + 1);
             } 
+
+            while(l < n) {
+                k += (s[l] != ch);
+                l++;
+            }
         }   
 
         return maxLen;
