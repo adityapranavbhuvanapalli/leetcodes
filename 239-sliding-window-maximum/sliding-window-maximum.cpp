@@ -15,7 +15,7 @@ public:
                     dq.pop_front();
             }  
 
-            while(dq.size() && nums[dq.back()] <= nums[r])
+            while(dq.size() && nums[dq.back()] < nums[r])
                 dq.pop_back();
 
             dq.push_back(r);
