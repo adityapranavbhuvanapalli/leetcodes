@@ -13,26 +13,26 @@ public:
     void reorderList(ListNode* head) {
         stack<ListNode*> s;
 
-        ListNode *cur = head;
+        ListNode *slow = head;
 
-        for(ListNode* fast=head->next; fast && fast->next; cur=cur->next, fast=fast->next->next);
+        for(ListNode* fast=head->next; fast && fast->next; slow=slow->next, fast=fast->next->next);
 
-        ListNode *m = cur->next;
-        cur->next = nullptr;
+        ListNode *cur = slow->next;
+        slow->next = nullptr;
 
-        while(m) {
-            s.push(m);
-            m = m->next;
+        while(cur) {
+            s.push(cur);
+            cur = cur->next;
         }
 
-        cur = head;
+        slow = head;
 
         while(s.size()) {
-            m = s.top();
+            cur = s.top();
             s.pop();
-            m->next = cur->next;
-            cur->next = m;
-            cur = cur->next->next;
+            cur->next = slow->next;
+            slow->next = cur;
+            slow = slow->next->next;
         }
     }
 };
