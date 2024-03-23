@@ -11,28 +11,29 @@
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        stack<ListNode*> s;
-
         ListNode *slow = head;
 
         for(ListNode* fast=head->next; fast && fast->next; slow=slow->next, fast=fast->next->next);
 
-        ListNode *cur = slow->next;
+        ListNode *prev = nullptr, *cur = slow->next, *next;
         slow->next = nullptr;
 
         while(cur) {
-            s.push(cur);
-            cur = cur->next;
+            next = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = next;
         }
 
-        slow = head;
+        ListNode *cur1 = head, *cur2 = prev;
+        next = nullptr;    
+        while(cur1 && cur2) {
+            next = cur1->next;
+            cur1->next = cur2;
+            cur2 = cur2->next;
 
-        while(s.size()) {
-            cur = s.top();
-            s.pop();
-            cur->next = slow->next;
-            slow->next = cur;
-            slow = slow->next->next;
+            cur1->next->next = next;
+            cur1 = next;
         }
     }
 };
