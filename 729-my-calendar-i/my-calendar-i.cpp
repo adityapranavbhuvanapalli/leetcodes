@@ -15,7 +15,7 @@ public:
 
         auto& [x, y] = calendar[idx];
 
-        if(start <= x && end <= x) {
+        if(end <= x) {
             calendar.insert(calendar.begin() + idx, {start, end});
             return true;
         }
