@@ -4,11 +4,15 @@ public:
         int count = 0;
         unordered_map<int, int> freq;
 
-        sort(nums.begin(), nums.end());
-
         for(const auto& num: nums) {
-            if((k == 0 && freq[num] == 1) || freq.count(num) == 0)
+            if(k == 0 && freq[num] == 1)
                 count += freq.count(num - k);
+            
+            if(freq.count(num) == 0) {
+                count += freq.count(num - k);
+                count += freq.count(num + k);
+            }
+            
             freq[num]++;
         }
 
