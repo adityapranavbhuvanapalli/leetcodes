@@ -1,25 +1,20 @@
 class Solution {
 public:
     int partitionDisjoint(vector<int>& nums) {
-        stack<int> s;
-        int maxVal = 0, n = nums.size();
+        int n = nums.size(), maxVal = 0;
+        vector<int> mins(n, nums[n - 1]);
 
-        for(int i=n-1; i>0; i--) {
-            if(s.empty() || nums[s.top()] > nums[i])
-                s.push(i);
+        for(int i=n-2; i>=0; i--) {
+            mins[i] = min(mins[i + 1], nums[i]);
         }
 
         for(int i=0; i<n-1; i++) {
             maxVal = max(maxVal, nums[i]);
-
-            if(s.top() == i)
-                s.pop();
-            
-            if(nums[s.top()] >= maxVal)
+            if(maxVal <= mins[i + 1])
                 return i + 1;
         }
 
-        return -1;
+        return 0;
     }
 };
 
@@ -30,7 +25,12 @@ max       min
 5   0   3   8   6
         0   3   6
 
-6   8   3   0   5
 
-6   3   0
+5   0   3   8   6
+                6
+
+1   1   0   1
+0   0   0   1
+1   1   1
+
 */
