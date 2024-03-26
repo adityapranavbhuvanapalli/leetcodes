@@ -1,6 +1,10 @@
 class Solution {
 public:
     int tupleSameProduct(vector<int>& nums) {
+        ios::sync_with_stdio(false);
+        cin.tie(nullptr);
+        cout.tie(nullptr);
+
         int n = nums.size(), res = 0;
         unordered_map<int, int> freq;
 
