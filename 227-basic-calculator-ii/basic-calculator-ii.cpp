@@ -2,19 +2,8 @@ class Solution {
 public:
     vector<string> stack;
     int calculate(string s) {
-        s = rectify(s);
         vector<string> postfix = convert(s);
         return evaluatePostfix(postfix);
-    }
-
-    string rectify(string& s) {
-        string res = "";
-
-        for(const auto& ch: s)
-            if(ch != ' ')
-                res += ch;
-
-        return res;
     }
 
     int evaluatePostfix(vector<string>& postfix) {
