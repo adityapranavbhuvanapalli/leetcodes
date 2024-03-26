@@ -2,27 +2,32 @@ class Solution {
 public:
     vector<string> res;
     vector<string> generateParenthesis(int n) {
-        string comb = "";
-        solve(0, 0, n, comb);
+        generate(0, 0, "", n);
         return res;
     }
 
-    void solve(int open, int close, int n, string& comb) {
-        if(close == n) {
+    void generate(int open, int close, string comb, int n) {
+        if(close == n) 
             res.push_back(comb);
-            return;
-        }
 
-        if(open < n) {
-            comb += '(';
-            solve(open + 1, close, n, comb);
-            comb.pop_back();
-        }
+        // Cases:
+        // 1. add ( to comb if open < n
+        // 2. add ) to comb if open > close
+        if(open < n)
+            generate(open + 1, close, comb + '(', n);
 
-        if(close < open) {
-            comb += ')';
-            solve(open, close + 1, n, comb);
-            comb.pop_back();
-        }
+        if(open > close)
+            generate(open, close + 1, comb + ')', n);
     }
 };
+
+/*
+open, close
+
+------
+(((
+  )
+ )(
+
+
+*/
