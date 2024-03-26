@@ -6,14 +6,11 @@ public:
 
         for(int i=0; i<n; i++) {
             for(int j=i+1; j<n; j++) {
-                res += freq[nums[i] * nums[j]];
-                freq[nums[i] * nums[j]]++;
+                int prod = nums[i] * nums[j];
+                res += freq[prod];
+                freq[prod]++;
             }
         }
-
-        // for(const auto& [k, v]: freq) {
-        //     res += v * (v - 1) / 2;
-        // }
 
         return 8 * res;
     }
