@@ -6,14 +6,9 @@ public:
 
         for(int r=0; r<n; r++) {
             freq[nums[r]]++;
-            if(freq[nums[r]] > k)
-                count++;
 
-            while(count > 0) {
+            while(freq[nums[r]] > k) {
                 freq[nums[l]]--;
-                if(freq[nums[l]] == k)
-                    count--;
-
                 l++;
             }
 
