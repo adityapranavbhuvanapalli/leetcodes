@@ -13,6 +13,7 @@ public:
                 freq[nums[l]]--;
                 if(freq[nums[l]] == k)
                     count--;
+
                 l++;
             }
 
@@ -25,14 +26,16 @@ public:
 
 /*
 k = 2
-1   2   3   1   2   3   1   2
+2   1   3   1   2   3   1   2
 l
                         r
+0   1   2   3   4   5   6   7
 
+unordered_map: stores the freq of each element
 1 - 3
 2 - 2
 3 - 2
-
+------------------------------------
 k = 2
 1   2   1   1   5
     l
