@@ -1,36 +1,49 @@
 class Solution {
 public:
-    int m, n, len; // m - noOfRows, n - noOfCols, len - wordLength
     bool exist(vector<vector<char>>& board, string word) {
-        m = board.size(), n = board[0].size(), len = word.size();
-        for(int i=0; i<m; i++)
-            for(int j=0; j<n; j++)
-                if(search(board, i, j, word, 0))
-                    return true;
+        int m = board.size(), n = board[0].size();
         
+        for(int i=0; i<m; i++) {
+            for(int j=0; j<n; j++) {
+                if(solve(i, j, board, 0, word))
+                    return true;
+            }
+        }
+
         return false;
     }
 
-    bool search(vector<vector<char>>& board, int i, int j, string& word, int k) {
-        if(k == len - 1)
+    bool solve(int i, int j, vector<vector<char>>& board, int k, string& word) {
+        int m = board.size(), n = board[0].size();
+        int wordSize = word.size();
+
+        if(k == wordSize - 1)
             return board[i][j] == word[k];
 
         if(board[i][j] != word[k])
             return false;
 
-        // Backtrack
-        char ch = board[i][j];
+        char tmp = board[i][j];
+
         board[i][j] = '#';
-        if(i > 0 && search(board, i-1, j, word, k+1))
+
+        if(i > 0 && board[i - 1][j] != '#' && solve(i - 1, j, board, k + 1, word))
             return true;
-        if(j > 0 && search(board, i, j-1, word, k+1)) 
+        if(i < m - 1 && board[i + 1][j] != '#' && solve(i + 1, j, board, k + 1, word))
             return true;
-        if(i < m-1 && search(board, i+1, j, word, k+1)) 
+        if(j > 0 && board[i][j - 1] != '#' && solve(i, j - 1, board, k + 1, word))
             return true;
-        if(j < n-1 && search(board, i, j+1, word, k+1))
+        if(j < n - 1 && board[i][j + 1] != '#' && solve(i, j + 1, board, k + 1, word))
             return true;
-        board[i][j] = ch;
+
+        board[i][j] = tmp;
 
         return false;
     }
 };
+
+/*
+ABCE
+SFCS
+ADEE
+*/
