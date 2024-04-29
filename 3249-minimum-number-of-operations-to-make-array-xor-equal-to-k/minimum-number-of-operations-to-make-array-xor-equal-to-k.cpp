@@ -8,20 +8,10 @@ public:
         val = val ^ k;
         
         while (val) {
-            count += (val & 1);
-            val = (val >> 1);
+            count++;
+            val = val & (val - 1);
         }
 
         return count;
     }
 };
-
-/*
-111010100
-111010011
----------
-111010000
-111001111
----------
-111000000
-*/
