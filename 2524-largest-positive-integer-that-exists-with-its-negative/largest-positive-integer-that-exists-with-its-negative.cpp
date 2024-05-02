@@ -15,7 +15,3 @@ public:
         return res;
     }
 };
-
-/*
-
-*/
