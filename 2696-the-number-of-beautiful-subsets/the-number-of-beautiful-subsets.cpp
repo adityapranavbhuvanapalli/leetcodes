@@ -4,7 +4,9 @@ public:
     int beautifulSubsets(vector<int>& nums, int k) {
         int n = nums.size();
         vector<int> comb;
+        
         sort(nums.begin(), nums.end());
+        
         backtrack(0, n, nums, k, comb);
         return res - 1;
     }
@@ -24,8 +26,9 @@ public:
 
     bool binarysearch(vector<int>& comb, int val) {
         int l = 0, r = comb.size() - 1, mid;
+
         while(l <= r) {
-            mid = l + (r-l)/2;
+            mid = l + (r - l) / 2;
             if(comb[mid] == val)
                 return true;
             
