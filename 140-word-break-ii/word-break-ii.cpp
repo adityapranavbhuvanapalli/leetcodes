@@ -2,16 +2,12 @@ class Solution {
 public:
     vector<string> wordBreak(string s, vector<string>& wordDict) {
         int n = s.size();
-        vector<vector<string>> dp(n);
-        return solve(0, n, s, wordDict, dp);
+        return solve(0, n, s, wordDict);
     }
     
-    vector<string> solve(int i, int n, string& s, vector<string>& dict, vector<vector<string>>& dp) {
+    vector<string> solve(int i, int n, string& s, vector<string>& dict) {
         if(i >= n)
             return {""};
-
-        // if(dp[i].size())
-        //     return dp[i];
 
         vector<string> res;
         for(const auto& word: dict) {
@@ -21,7 +17,7 @@ public:
                 if(word != prefix) 
                     continue;
 
-                parts = solve(i + word.size(), n, s, dict, dp);
+                parts = solve(i + word.size(), n, s, dict);
 
                 for(const auto& part: parts) {
                     if(part == "")
@@ -32,6 +28,6 @@ public:
             }
         }
 
-        return dp[i] = res;
+        return res;
     }
 };
