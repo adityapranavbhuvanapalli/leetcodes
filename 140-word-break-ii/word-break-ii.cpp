@@ -10,8 +10,8 @@ public:
         if(i >= n)
             return {""};
 
-        if(dp[i].size())
-            return dp[i];
+        // if(dp[i].size())
+        //     return dp[i];
 
         vector<string> res;
         for(const auto& word: dict) {
