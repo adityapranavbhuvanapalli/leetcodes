@@ -16,12 +16,22 @@ public:
 
         int res = 0;
 
+        // absent
         if(a < 1)
-            res = (res + solve(n - 1, a + 1, 0)) % MOD;
+            res =  (res + solve(n - 1, a + 1, 0)) % MOD;
+
+        // late
         if(l < 2)
-            res = (res + solve(n - 1, a, l + 1)) % MOD;
+            res = (res + solve(n - 1, a, l + 1)) % MOD; 
+
+        // present
         res = (res + solve(n - 1, a, 0)) % MOD;
 
         return dp[n][a][l] = res;
     }
 };
+
+/*
+a < 1
+l < 2 
+*/
