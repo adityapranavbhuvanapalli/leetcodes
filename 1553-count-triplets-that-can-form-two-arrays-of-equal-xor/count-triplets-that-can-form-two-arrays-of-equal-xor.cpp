@@ -4,14 +4,16 @@ public:
         int n = arr.size(), count = 0, prefix = 0;
         unordered_map<int, vector<int>> posOfL;
 
-        posOfL[0] = {0};
         for(int k=0; k<n; k++) {
             prefix = prefix ^ arr[k];
 
+            if(prefix == 0) 
+                count += k;
+
             for(const auto& i: posOfL[prefix])
-                count += k - i;
+                count += k - i - 1;
             
-            posOfL[prefix].push_back(k + 1);
+            posOfL[prefix].push_back(k);
         }
 
         return count;
@@ -51,4 +53,5 @@ We can solve using prefix XOR
     1   1   1   1
     1   1   1   1
     1   1   1   1
+
 */
