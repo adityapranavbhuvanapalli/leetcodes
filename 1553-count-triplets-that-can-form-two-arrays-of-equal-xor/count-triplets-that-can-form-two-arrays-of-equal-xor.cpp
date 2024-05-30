@@ -4,11 +4,9 @@ public:
         int n = arr.size(), count = 0, prefix = 0;
         unordered_map<int, vector<int>> posOfL;
 
+        posOfL[0] = {-1};
         for(int k=0; k<n; k++) {
             prefix = prefix ^ arr[k];
-
-            if(prefix == 0) 
-                count += k;
 
             for(const auto& i: posOfL[prefix])
                 count += k - i - 1;
@@ -30,7 +28,7 @@ arr[i] .... arr[k] = 0
 
 Number of triplets that satisfy this between i and k the number of j's possible
 But for XOR j can be possible everywhere between i and k so 
-Number of triplets that satisfy this between i and k = k - i + 1
+Number of triplets that satisfy this between i and k = k - i - 1
 
 We can solve using prefix XOR
 
