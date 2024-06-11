@@ -6,7 +6,7 @@ public:
         
         for(int i=0; i<n2; i++)
             priority[arr2[i]] = n2-i;
-        
+            
         sort(arr1.begin(), arr1.end(), [&](auto& l, auto& r) {
             return priority[l] == priority[r] ? l < r : priority[l] > priority[r];
         });
